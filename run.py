@@ -22,7 +22,9 @@ async def event_ready():
 @bot.event
 async def event_message(ctx):
     'Runs every time a message is sent in chat.'
-
+    print("run")
+    print(ctx.content)
+    
     # make sure the bot ignores itself and the streamer
     if ctx.author.name.lower() == IDENT.lower():
         return
