@@ -12,7 +12,7 @@ class Bot(commands.Bot):
         print(f'Ready | {self.nick}')
 
     async def event_message(self, message):
-        print(message.content)
+        print(f"{message.channel} | {message.author.name}: {message.content}")
         await self.handle_commands(message)
 
     # Commands use a different decorator
