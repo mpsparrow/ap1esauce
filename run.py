@@ -16,8 +16,11 @@ while True:
     if response == "PING :tmi.twitch.tv\r\n":
         s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
     else:
-        user = getUser(response)
-        message = getMessage(response)
-        if "hi" in message.lower():
-            chat(s, "hello")
+        try:
+            user = getUser(response)
+            message = getMessage(response)
+            if "hi" in message.lower():
+                chat(s, "hello")
+        except:
+            print("issue")
         print(response)
