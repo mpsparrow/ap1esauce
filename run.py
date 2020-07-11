@@ -1,28 +1,44 @@
-import string
-import socket
-from read import getUser, getMessage
-from actions import chat, ban, timeout
-from settings import HOST, PORT, PASS, IDENT, CHANNEL
+import os
+from twitchio.ext import commands
+from settings import PASS, CLIENTID, IDENT, PREFIX, CHANNEL
 
-s = socket.socket()
-s.connect((HOST, PORT))
-s.send("PASS {}\r\n".format(PASS).encode("utf-8"))
-s.send("NICK {}\r\n".format(IDENT).encode("utf-8"))
-s.send("JOIN {}\r\n".format(CHANNEL).encode("utf-8"))
+# set up the bot
+bot = commands.Bot(
+    irc_token=PASS,
+    client_id=CLIENTID,
+    nick=IDENT,
+    prefix=PREFIX,
+    initial_channels=CHANNEL]
+)
 
-while True:
-    response = s.recv(1024).decode("utf-8")
+@bot.event
+async def event_ready():
+    'Called once when the bot goes online.'
+    print(f"{IDENT} is online!")
+    ws = bot._ws  # this is only needed to send messages within event_ready
+    await ws.send_privmsg(CHANNEL, f"/me has landed!")
 
-    if response == "PING :tmi.twitch.tv\r\n":
-        s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
-    else:
-        try:
-            user = getUser(response)
-            message = getMessage(response)
-        except:
-            print("issue")
 
-        if "hi" in message.lower():
-            chat(s, "hello")
-            
-        print(response)
+@bot.event
+async def event_message(ctx):
+    'Runs every time a message is sent in chat.'
+
+    # make sure the bot ignores itself and the streamer
+    if ctx.author.name.lower() == IDENT.lower():
+        return
+
+    await bot.handle_commands(ctx)
+
+    # await ctx.channel.send(ctx.content)
+
+    if 'hello' in ctx.content.lower():
+        await ctx.channel.send(f"Hi, @{ctx.author.name}!")
+
+
+@bot.command(name='test')
+async def test(ctx):
+    await ctx.send('test passed!')
+
+
+if __name__ == "__main__":
+    bot.run()
