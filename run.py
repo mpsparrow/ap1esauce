@@ -2,7 +2,7 @@ import string
 import socket
 from read import getUser, getMessage
 from actions import chat, ban, timeout
-from settings import HOST, PORT, PASS, IDENT, CHANNEL, RATE
+from settings import HOST, PORT, PASS, IDENT, CHANNEL
 
 s = socket.socket()
 s.connect((HOST, PORT))
@@ -17,5 +17,3 @@ while True:
         s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
     else:
         print(response)
-
-    sleep(1 / RATE)
