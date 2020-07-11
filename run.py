@@ -8,7 +8,7 @@ bot = commands.Bot(
     client_id=CLIENTID,
     nick=IDENT,
     prefix=PREFIX,
-    initial_channels=CHANNEL]
+    initial_channels=CHANNEL
 )
 
 @bot.event
