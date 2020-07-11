@@ -1,3 +1,5 @@
+from settings import CHANNEL
+
 def chat(sock, msg):
     """
     Send a chat message to the server.
@@ -5,7 +7,7 @@ def chat(sock, msg):
     sock -- the socket over which to send the message
     msg  -- the message to be sent
     """
-    sock.send("PRIVMSG #{} :{}".format(cfg.CHAN, msg))
+    sock.send("PRIVMSG #{} :{}".format(settings.CHANNEL, msg))
 
 def ban(sock, user):
     """
