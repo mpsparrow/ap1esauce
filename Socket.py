@@ -4,9 +4,9 @@ from Settings import HOST, PORT, PASS, IDENT, CHANNEL
 def openSocket():
 	s = socket.socket()
 	s.connect((HOST, PORT))
-	s.send("PASS " + "PASS" + "\r\n")
-	s.send("NICK " + "IDENT" + "\r\n")
-	s.send("JOIN #" + " CHANNEL" + "\r\n")
+	s.send(f"{PASS} " + f"{PASS}" + "\r\n")
+	s.send(f"{NICK} " + f"{IDENT}" + "\r\n")
+	s.send(f"{JOIN} #" + f" {CHANNEL}" + "\r\n")
 	return s
 	
 def sendMessage(s, message):
