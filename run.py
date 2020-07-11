@@ -2,7 +2,6 @@ import string
 from read import getUser, getMessage
 from socket import openSocket
 from actions import chat, ban, timeout
-from Initialize import joinRoom
 from settings import RATE
 
 s = openSocket()
