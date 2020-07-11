@@ -5,7 +5,7 @@ def joinRoom(s):
 	readbuffer = ""
 	Loading = True
 	while Loading:
-		readbuffer = readbuffer + s.recv(1024)
+		readbuffer = readbuffer + str(s.recv(1024))
 		temp = string.split(readbuffer, "\n")
 		readbuffer = temp.pop()
 		
