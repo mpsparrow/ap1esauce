@@ -19,8 +19,10 @@ while True:
         try:
             user = getUser(response)
             message = getMessage(response)
-            if "hi" in message.lower():
-                chat(s, "hello")
         except:
             print("issue")
+
+        if "hi" in message.lower():
+            chat(s, "hello")
+            
         print(response)
