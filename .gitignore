@@ -1,5 +1,5 @@
 *.json
 *.log
 *.ini
-Settings.py
+settings.py
 __pycache__
