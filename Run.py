@@ -1,26 +1,19 @@
 import string
-from Read import getUser, getMessage
-from Socket import openSocket, sendMessage
+from read import getUser, getMessage
+from socket import openSocket, sendMessage
 from Initialize import joinRoom
+from settings import RATE
 
 s = openSocket()
-joinRoom(s)
-readbuffer = ""
 
 while True:
-		readbuffer = readbuffer + s.recv(1024)
-		temp = string.split(readbuffer, "\n")
-		readbuffer = temp.pop()
-		
-		for line in temp:
-			print(line)
-			if "PING" in line:
-				s.send(line.replace("PING", "PONG"))
-				break
-			user = getUser(line)
-			message = getMessage(line)
-			print (user + " typed :" + message)
-			if "You Suck" in message:
-				sendMessage(s, "No, you suck!")
-				break
-			
+    response = s.recv(1024).decode("utf-8")
+    if response == "PING :tmi.twitch.tv\r\n":
+        s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
+    else:
+        print(response)
+		username = re.search(r"\w+", line).group(0) # return the entire match
+        message = CHAT_MSG.sub("", line)
+        print(username + ": " + message)
+	
+	sleep(1 / RATE)
