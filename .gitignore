@@ -1,0 +1,5 @@
+*.json
+*.log
+*.ini
+Settings.py
+__pycache__
