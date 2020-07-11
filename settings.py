@@ -1,5 +1,5 @@
-PASS = "" 
+PASS = "auth" 
 CLIENTID = ""
-IDENT = "" 
-PREFIX = ""
-CHANNEL = ""
+IDENT = "botname" 
+PREFIX = "!"
+CHANNEL = ["#mychannel"]
