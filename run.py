@@ -12,8 +12,5 @@ while True:
         s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
     else:
         print(response)
-		username = re.search(r"\w+", line).group(0) # return the entire match
-        message = CHAT_MSG.sub("", line)
-        print(username + ": " + message)
 	
 	sleep(1 / RATE)
