@@ -15,11 +15,11 @@ class Bot(commands.Bot):
         print(f'Ready | {self.nick}')
 
     async def event_message(self, message):
-        if isinstance(error, commands.CommandNotFound):
-            await self.handle_commands(message)
-        else:
+        try:
             write(f"{message.channel}.txt", message.content)
             await self.handle_commands(message)
+        except Exception as e:
+            print(e)
 
 bot = Bot()
 bot.run()
