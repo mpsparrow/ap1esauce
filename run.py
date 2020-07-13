@@ -20,8 +20,9 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            await self.get_stream(message.channel)
+            data = await message.get_stream(message.channel)
             print("1")
+            print(data)
             write(f"{message.channel}.txt", message.content)
             await self.handle_commands(message)
         except Exception as e:
