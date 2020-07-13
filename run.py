@@ -14,13 +14,13 @@ class Bot(commands.Bot):
     async def event_ready(self):
         print(f'Ready | {self.nick}')
 
-    async def event_command_error(self, error: Exception):
+    async def event_command_error(self, error: Exception, data=None):
         if isinstance(error, commands.CommandNotFound):
             return
 
     async def event_message(self, message):
         try:
-            print(f"{message.channel} | {self.get_stream(message.channel)}")
+            print(f"{message.channel} | {self.get_stream(message.channel)["data"]}")
             data = self.get_stream(message.channel)
             if data is not None:
                 print("0")
