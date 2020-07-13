@@ -20,7 +20,8 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            data = await message.get_stream(message.channel)
+            print("0")
+            data = await self.get_stream(message.channel)
             print("1")
             print(data)
             write(f"{message.channel}.txt", message.content)
