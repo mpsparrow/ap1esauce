@@ -20,14 +20,15 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            print("0")
             data = await self.get_stream(message.channel)
-            print("1")
-            print(data)
-            write(f"{message.channel}.txt", message.content)
-            await self.handle_commands(message)
+            if data is not None:
+                print("0")
+                write(f"{message.channel}.txt", message.content)
+                await self.handle_commands(message)
+            else:
+                print("1")
         except Exception as e:
-            print("2")
+            print(e)
 
 bot = Bot()
 bot.run()
