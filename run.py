@@ -1,3 +1,4 @@
+
 from twitchio.ext import commands
 from settings import PASS, CLIENTID, CLIENTSECRET, IDENT, PREFIX, CHANNEL
 
@@ -20,15 +21,10 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            data = self.get_stream(message.channel)
-            print("-1")
-            print(data)
+            data = await message.channel.get_stream()
             if data is not None:
-                print("0")
                 write(f"{message.channel}.txt", message.content)
-                await self.handle_commands(message)
-            else:
-                print("1")
+                # await self.handle_commands(message)
         except Exception as e:
             print(e)
 
