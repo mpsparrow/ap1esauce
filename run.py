@@ -20,7 +20,6 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            print(f"{message.channel} | {self.get_stream(message.channel)}")
             data = await self.get_stream(message.channel)
             print("-1")
             print(data)
