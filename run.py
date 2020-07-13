@@ -14,9 +14,14 @@ class Bot(commands.Bot):
     async def event_ready(self):
         print(f'Ready | {self.nick}')
 
+    async def event_command_error(self, error: Exception):
+        if isinstance(error, commands.CommandNotFound):
+            return
+
     async def event_message(self, message):
         try:
-            print(self.get_stream(message.channel))
+            await self.get_stream(message.channel)
+            print("1")
             write(f"{message.channel}.txt", message.content)
             await self.handle_commands(message)
         except Exception as e:
