@@ -21,9 +21,9 @@ class Bot(commands.Bot):
     async def event_message(self, message):
         try:
             print(f"{message.channel} | {self.get_stream(message.channel)}")
-            data = await self.get_stream(message.channel)[]
+            data = await self.get_stream(message.channel)
             print("-1")
-            print(data)
+            print(data[])
             if data is not None:
                 print("0")
                 write(f"{message.channel}.txt", message.content)
