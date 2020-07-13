@@ -20,7 +20,7 @@ class Bot(commands.Bot):
 
     async def event_message(self, message):
         try:
-            print(f"{message.channel} | {self.get_stream(message.channel)['data']}")
+            print(f"{message.channel} | {await self.get_stream(message.channel)[]}")
             data = self.get_stream(message.channel)
             if data is not None:
                 print("0")
