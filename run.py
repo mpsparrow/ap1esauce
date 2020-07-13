@@ -15,7 +15,7 @@ class Bot(commands.Bot):
         print(f'Ready | {self.nick}')
 
     async def event_message(self, message):
-        write(f"{message.channel}", message.content)
+        write(f"{message.channel}.txt", message.content)
         await self.handle_commands(message)
 
 bot = Bot()
