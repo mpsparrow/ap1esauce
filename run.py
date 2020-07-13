@@ -19,7 +19,7 @@ class Bot(commands.Bot):
             write(f"{message.channel}.txt", message.content)
             await self.handle_commands(message)
         except Exception as e:
-            print(e)
+            pass
 
 bot = Bot()
 bot.run()
